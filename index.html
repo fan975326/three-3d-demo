@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>three-3d-demo</title>
+    <!-- <script
+      async
+      src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"
+    ></script> -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.154.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.154.0/examples/jsm/",
+          "d3-geo": "https://cdn.jsdelivr.net/npm/d3-geo@3/+esm"
+        }
+      }
+    </script>
+    <style>
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      body {
+        position: relative;
+      }
+      #tooltip {
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 6px;
+        border-radius: 4px;
+        display: none;
+        background: #fff;
+        pointer-events: none;
+      }
+
+      #back {
+        position: absolute;
+        left: 100px;
+        top: 50px;
+        background: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 6px;
+        border-radius: 4px;
+        cursor: pointer;
+        user-select: none;
+        z-index: 100;
+        display: none;
+      }
+
+      #back::after {
+        content: "返回";
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="tooltip"></div>
+    <div id="back"></div>
+    <script type="module" src="./index.js"></script>
+
+    <script>
+      // 当鼠标移动到上卖弄的时候禁止事件传播，否则会触发three的光纤投射
+      document.getElementById("back").addEventListener("mousemove", (event) => {
+        event.stopPropagation();
+      });
+    </script>
+  </body>
+</html>
